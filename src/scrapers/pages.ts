@@ -1,6 +1,6 @@
 import { readFile, writeFile } from 'fs/promises'
 import { firefox, FirefoxBrowser } from 'playwright'
-import { Entry } from './song' 
+import { Entry } from '../song' 
 
 enum Reason {
   NullDist = 'null dist',

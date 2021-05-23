@@ -46,8 +46,8 @@ interface SelectorSet {
   irrelevant_selectors: string[]
 }
 
-export const get_links = (): Promise<string[]> =>
-  readFile('./urls.json', 'ascii').then(JSON.parse)
+export const get_links = (path: string): Promise<string[]> =>
+  readFile(path, 'ascii').then(JSON.parse)
 
 /**
  * @on_success {Continue}
@@ -175,12 +175,16 @@ const download = (browser: Browser, url: string): Promise<Res> =>
     })
   })
 
-const loop = async () => {
+const loop = async (url_path: string, dist: string) => {
+  if (!url_path) 
+    throw new Error("No url path provided")
+
+
   const browser = await browser_inst.launch({
     timeout: 0,
   })
 
-  const urls: URL[] = await get_links().then(vs =>
+  const urls: URL[] = await get_links(url_path).then(vs =>
     vs.map((url, i) => ({ url, i }))
   )
   const processed: RawSong[] = []
@@ -213,7 +217,7 @@ const loop = async () => {
   await browser.close()
 
   await writeFile(
-    './lyrics.json',
+    dist,
     JSON.stringify(
       processed.sort((a, b) => a.i - b.i),
       null,
@@ -238,7 +242,7 @@ const test = async (url: string) => {
   await browser.close()
 }
 
-loop()
+loop(process.argv[2], process.argv[3])
   // test("https://genius.com/Phillipa-soo-burn-lyrics")
   .catch(console.error)
   .finally(() => process.exit(0))

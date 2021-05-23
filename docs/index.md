@@ -1,8 +1,10 @@
+# Notes
+[notes](./notes.md)
 # Conjunction
 ## Harmonic
 This type of conjunction is used to denote multiple speakers singing at the same time. For instance:  
 
-> [(Right Hand Man)](https://youtu.be/0JR0ApUALOQ?t=41)
+> [(Right Hand Man)](https://youtu.be/0JR0ApUALOQ?t=41)  
 > [ HAMILTON/BURR/MULLIGAN/LAURENS/LAFAYETTE ]  
 > Rise up!
 
