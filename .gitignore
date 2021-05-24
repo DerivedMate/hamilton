@@ -4,3 +4,6 @@ package-lock.json
 dist
 **/*.temp.*
 out.txt
+parser/target/**/*
+parser/*.lock
+parser/dist*

@@ -27,10 +27,18 @@
   ```
   "{Company} In New York you can $> be a new man {Hamilton$} (Just you wait)",
   "{Company} In New York you can $> be a new man {Hamilton$} (Just you wait)",
-  Company "In New York you can be a new man",
+  "{Company} In New York you can be a new man",
   "{Women} In New York, {Men} New York",
-  Hamilton "Just you wait!"
+  "{Hamilton} Just you wait!"
+  => Together[ Accomp. [ S(Company)
+                       , S(Hamilton) 
+                       ]
+             , Together[ S(Women)
+                       , S(Men) 
+                       ]  
+      ]
   ```
+
 
 ## L124 "BURR, MEN, & COMPANY"
   ```
@@ -43,6 +51,41 @@
   "{Burr} His enemies destroyed his rep",  
   "{Burr} America forgot him"
   ``` 
+
+## L2078 "HAMILTON, COMPANY & ELIZA/ANGELICA/PEGGY/WOMEN"
+> EAPW = Eliza/Angelica/Peggy/Women
+  ```
+  "{Company} Boom!",
+  "{EAPW} Whoa, whoa, whoa",
+  "{Hamilton} I'll write to Congress and tell ‘em we need supplies, you rally the guys,",
+  "{Hamilton} Master the element of surprise",
+  "{Company} Chicka-boom!",
+  "{EAPW} Whoa, whoa, whoa...",
+  "{Hamilton} I'll rise above my station, organize your information",
+  "{EAPW} Whoa, whoa, whoa...",
+  "{Hamilton} 'Til we rise to the occasion of our new nation. Sir!"
+  ```
+
+## L2457 "ALL WOMEN, ELIZA, & HAMILTON"
+  ```
+  "{All Women} Helpless!",
+  "{Eliza} I do, I do, I do, I do!",
+  "{Hamilton} Eliza",
+  "{All Women} Helpless!",
+  "{Eliza} I do, I do, I do, I do!",
+  "{Hamilton} I've never felt so—",
+  "{All Women} Helpless!",
+  "{Eliza} Hey, yeah, yeah!",
+  "{All Women} Down for the count and I'm drownin' in 'em",
+  "{Eliza} I'm down for the count, I'm—",
+  "{All Women} Helpless!",
+  "{Hamilton} My life is gon' be fine 'cause Eliza's in it",
+  "{All Women} Helpless!",
+  "{Eliza} I look into your eyes and the sky's the limit, I'm—",
+  "{All Women} Helpless!",
+  "{All Women} Down for the count and I'm drownin' in 'em",
+  "{Eliza} ...drownin' in 'em"
+  ```
 
 # A & B
 ## L137 "MULLIGAN/MADISON & LAFAYETTE/JEFFERSON"
@@ -98,6 +141,64 @@
   "{HLLM} And I am— {Ensemble} (And I am)"
   ```
 
+## L1669 "WASHINGTON & ENSEMBLE"
+  ```
+  "{Washington} We are outgunned {Ensemble} (What?)",
+  "{Washington} Outmanned {Ensemble} (What?)",
+  "{Washington} Outnumbered",
+  "{Washington} Outplanned {Ensemble} (Buck, buck, buck, buck, buck!)",
+  "{Washington} We gotta make an all out stand",
+  "{Washington} Ayo, I'm gonna need a right-hand man",
+  "{Ensemble} (Buck, buck, buck, buck, buck!)"
+  ```
+
+## L2314 "ELIZA & ALL WOMEN"
+  ```
+  "{Eliza} Grab my sister, and whisper, “Yo, this one's mine.” {All Women} (Ooh)",
+  "{Eliza} My sister made her way across the room to you {All Women} (Ooh)",
+  "{Eliza} And I got nervous, thinking “What's she gonna do?” {All Women} (Ooh)",
+  "{Eliza} She grabbed you by the arm, I'm thinkin' “I'm through” {All Women} (Ooh)",
+  "{Eliza} Then you look back at me and suddenly I'm",
+  "{Eliza} Helpless!",
+  "{Eliza} Oh, look at those eyes",
+  "{All Women} Look into your eyes",
+  "{All Women} And the sky's the limit",
+  "{Eliza} Oh!",
+  "{All Women} I'm helpless",
+  "{Eliza} Yeah, I'm helpless, I know",
+  "{All Women} Down for the count and I'm drownin' in 'em",
+  "{All Women} I'm helpless",
+  "{Eliza} I'm so into you",
+  "{All Women} Look into your eyes",
+  "{Eliza} I am so into you",
+  "{All Women} And the sky's the limit, I'm helpless",
+  "{Eliza} I know I'm down for the count and I'm drownin' in 'em",
+  "{All Women} Down for the count and I'm drownin' in 'em"
+
+  [...]
+
+  "{Eliza} Ha!",
+  "{Eliza} Two weeks later in the living room stressin' {All Women} (stressin')",
+  "{Eliza} My father's stone-faced while you're asking for his blessin' {All Women} (blessin')",
+  "{Eliza} I'm dying inside, as you wine and dine",
+  "{Eliza} And I'm tryin' not to cry ‘cause there's nothing that your mind can't do {All Women} (Ooh)",
+  "{Eliza} My father makes his way across the room to you {All Women} (Ooh)",
+  "{Eliza} I panic for a second, thinking “we're through” {All Women} (Ooh)",
+  "{Eliza} But then he shakes your hand and says “Be true” {All Women} (Ooh)",
+  "{Eliza} And you turn back to me, smiling, and I'm",
+  "{Eliza} Helpless! {All Women} (Helpless!)",
+  "{All Women} Look into your eyes and the sky's the limit",
+  "{All Women} I'm helpless",
+  "{Eliza} Helpless",
+  "{All Women} Down for the count and I'm drownin' in 'em {Eliza} (hoo!)",
+  "{All Women} I'm helpless!",
+  "{Eliza} That boy is mine, that boy is mine",
+  "{All Women} Look into your eyes and the sky's the limit",
+  "{All Women} I'm helpless",
+  "{Eliza} Helpless, helpless",
+  "{Eliza} Down for the count and I'm drownin' in 'em",
+  "{All Women} Down for the count and I'm drownin' in 'em"
+  ```
 
 # A and B
 ## L733 "HAMILTON AND COMPANY"
@@ -115,6 +216,15 @@
   ```
   "{AnME} Look around, look around—"
   ```
+
+## L2289 "ELIZA AND WOMEN"
+> EnW = Eliza And Women  
+  ```
+  "{EnW} Helpless!",
+  "{EnW} Look into your eyes, and the sky's the limit I'm helpless!",
+  "{EnW} Down for the count, and I'm drownin' in ‘em"
+  ```
+
 
 # A and B & C
 > A's main line, accompanied by B (unison), accompanied by C (distinguishable)
@@ -134,10 +244,32 @@
   ```
 
 # A with B
-> Synonymous with «A and B»
+> Similar to «A & B, both»: A's main line, joint by B in a harmonic at some point  
 ## L1119 "ELIZA/ANGELICA/PEGGY with COMPANY"
 > EAP = Eliza/Angelica/Peggy
   ```
   "{EAP} Whooaaaaa!",
   "{EAP and Company} Work!"
+  ```
+
+
+# P: A
+> Labeling  
+## L1517 "Chorus: KING GEORGE"
+  ```
+  "{King George} Da da da dat da dat da da da da ya da",
+  "{King George} Da da dat dat da ya da!",
+  "{King George} Da da da dat da dat da da da da ya da",
+  "{King George} Da da dat—",
+  "{King George} Everybody!"
+  ```
+
+# A except B
+## L2030 "COMPANY EXCEPT HAMILTON"
+> C-H = Company except Hamilton
+  ```
+  "{C-H} I am not throwin' away my shot!",
+  "{C-H} I am not throwin' away my shot!",
+  "{C-H} Ayo, I'm just like my country, I'm young",
+  "{C-H} Scrappy and hungry!"
   ```
