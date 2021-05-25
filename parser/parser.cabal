@@ -21,7 +21,8 @@ executable parser
   hs-source-dirs:      app, src
   other-modules:       InputData,
                        Lexer,
-                       Parser
+                       Parser,
+                       Helpers
   -- other-extensions:
   build-depends:       base >=4.13 && <4.14,
                        aeson >=1.5.6.0,
