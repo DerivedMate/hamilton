@@ -22,7 +22,9 @@ executable parser
   other-modules:       InputData,
                        Lexer,
                        Parser,
-                       Helpers
+                       Helpers,
+                       LexerV2,
+                       Grammar
   -- other-extensions:
   build-depends:       base >=4.13 && <4.14,
                        aeson >=1.5.6.0,
