@@ -13,7 +13,7 @@ import qualified Data.ByteString.Lazy.Char8 as BL
 import qualified InputData as ID
 import InputData (RawSong)
 import Helpers
-import LexerV2
+import Lexer
 
 data LexerTest = 
   LexerTest {

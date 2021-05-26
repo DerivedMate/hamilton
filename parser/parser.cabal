@@ -23,7 +23,6 @@ executable parser
                        Lexer,
                        Parser,
                        Helpers,
-                       LexerV2,
                        Grammar
   -- other-extensions:
   build-depends:       base >=4.13 && <4.14,
