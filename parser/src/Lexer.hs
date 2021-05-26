@@ -1,6 +1,7 @@
 module Lexer where
 import Data.Char
 import Data.List
+import Data.Maybe
 import Debug.Trace
 import Helpers
 
@@ -43,13 +44,16 @@ keywordOfString str = aux $ clean str
     clean :: String -> String
     clean s      = toLower <$> dropWhileEnd isSpace s
     aux :: String -> Maybe Keyword
-    aux "except" = Just Except
-    aux "with"   = Just With
-    aux "and"    = Just And
-    aux "both"   = Just Both
-    aux _        = Nothing
+    aux s        = lookup s dict
+    dict         = [ ("except", Except)
+                   , ("with"  , With)
+                   , ("and"   , And)
+                   , ("both"  , Both)
+                   ]
 
-
+{----:
+  Converts char to tokens
+:----}
 tokenOfChar :: Char -> Token
 tokenOfChar '(' = Parenthesis Open
 tokenOfChar ')' = Parenthesis Close
@@ -61,48 +65,60 @@ tokenOfChar c
   | isWordy c = Part [c]
   -- Purposefully left to throw errors in debugging
 
+{----:
+  Removes redundant elements from tokens
+:----}
 cleanToken :: Token -> Token
 cleanToken (Part p) = Part $ dropWhileEnd isSpace p
-cleanToken t = t
+cleanToken t        = t
 
+{----:
+  Extracts string from Part
+:----}
 stringOfPart :: Token -> String
 stringOfPart (Part p) = p
 -- stringOfPart _ = ""
 
+{----:
+  Resolves the previous lexer state to a new one
+  `prev, char, tokens -> prev', tokens'`
+:----}
 resolve :: Maybe Token -> Char -> [Token] -> (Maybe Token, [Token])
-resolve (Just p@(Part pp)) ' ' tokens = (Just (last splitTokens), init splitTokens <> tokens)
-    where
-      groupParts (Part _) (Part _) = True
-      groupParts _ _               = False
-      recombineParts ts
-        | any isPart ts = [foldl aux (Part "") ts]
-        | otherwise     = ts
-        where aux (Part a) (Part b) = Part (a <> b <> " ")
-      splitTokens = concatMap recombineParts 
-                  $ groupBy groupParts 
-                    (aux <$> words pp)
-
-      aux :: String -> Token
-      aux s = case keywordOfString s of
-        Nothing -> Part s
-        Just k  -> Key k
-
-resolve p ' ' tokens                  = (p, tokens)
-
-resolve Nothing c tokens = (Just t, tokens)
-    where t = tokenOfChar c
-
-resolve (Just p) c tokens = 
+resolve (Just p@(Part pp)) ' ' tokens
+  | Just k <- key
+  , (not . null) remaining 
+  = (key, Part remaining : tokens)
+  | Just k <- key
+  = (key, tokens)
+  | otherwise     
+  = (Just (Part (pp <> " ")), tokens)
+  where
+    parts        = words pp
+    possible_key = last parts
+    remaining    = unwords (init parts)
+    key          = Key <$> keywordOfString possible_key
+  
+resolve p       ' ' tokens =     (p                     ,      tokens) -- skip spaces in non-part
+resolve Nothing  c  tokens =     (Just (tokenOfChar c)  ,      tokens) -- add new token
+resolve (Just p) c  tokens =    
     case (p, t) of
-      (Part pp, Part tt)   -> (Just $ Part (pp <> tt), tokens) -- Join parts
-      (Part pp, Semicolon) -> (Nothing, tokens)                -- Skip labels
-      (Part pp , _)        -> (Just t, maybeOr (Key <$> keywordOfString (toLower <$> pp)) p : tokens)
-      (_, Part _)          -> (Just t, p : tokens)
-      (Comma, Amp)         -> (Just ComAmp, tokens)
-      _                    -> (Just t, p : tokens)
+      (Part pp, Part tt)   ->    (Just (Part (pp <> tt)),      tokens) -- Expand part
+      (Part pp, Semicolon) ->    (Nothing               ,      tokens) -- Skip labels
+      (Part pp , _)        -> let 
+                                t' = (Key 
+                                      <$> keywordOfString 
+                                      (toLower <$> pp)
+                                     ) ?> p
+                              in (Just t                , t' : tokens) -- end part
+      (Comma, Amp)         ->    (Just ComAmp           ,      tokens) -- convert ,&
+      _                    ->    (Just t                , p  : tokens) -- add new token
       
   where t = tokenOfChar c
 
+{----:
+  Converts, and simplifies input strings
+  into lexical items, later to be parsed
+:----}
 lexer :: String -> [Token]
 lexer (c:cs) = aux Nothing c cs []
   where
@@ -110,14 +126,13 @@ lexer (c:cs) = aux Nothing c cs []
     aux prev c "" tokens = map cleanToken $ reverse tokens''
       where 
         (prev', tokens') = resolve prev c tokens
-        tokens''         = case prev' of
-                            Just (Part t) -> 
-                                let t' = case keywordOfString t of
-                                          Just k -> Key k
-                                          Nothing -> Part t
-                                in t' : tokens'
-                            Just t        -> t : tokens'
-                            Nothing       -> tokens'
+        tokens''
+          | Just (Part t) <- prev' 
+          = (Key <$> keywordOfString t) ?> Part t : tokens'
+          | Just t        <- prev' 
+          = t : tokens'
+          | Nothing       <- prev' 
+          = tokens'
 
     aux prev c (c':cs) tokens = aux prev' c' cs tokens'
       where (prev', tokens') = resolve prev c tokens

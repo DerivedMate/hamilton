@@ -8,6 +8,7 @@ import System.IO
 import Control.Monad
 import Data.List
 import Data.Aeson
+import Data.Aeson.Encode.Pretty
 import qualified Data.ByteString.Lazy.Char8 as BL
 import qualified InputData as ID
 import InputData (RawSong)
@@ -33,6 +34,6 @@ main = withUtf8 $ do
   inp <- BL.readFile "../lyrics.json" 
   songs <- pure $ maybeOr (decode inp) [] :: IO [RawSong]
 
-  BL.writeFile "./out.json" $ encode $ map aux $ nub $ concatMap (map ID.speaker_line . ID.lines) songs
+  BL.writeFile "./out.json" $ encodePretty $ map aux $ nub $ concatMap (map ID.speaker_line . ID.lines) songs
 
   where aux s = LexerTest s (show <$> lexer s)

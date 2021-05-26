@@ -26,6 +26,7 @@ executable parser
   -- other-extensions:
   build-depends:       base >=4.13 && <4.14,
                        aeson >=1.5.6.0,
+                       aeson-pretty >= 0.8.8,
                        bytestring >= 0.10.8.2,
                        with-utf8 >= 1.0.2.2,
                        text >= 1.2.4.1
