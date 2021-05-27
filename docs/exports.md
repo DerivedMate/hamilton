@@ -53,7 +53,7 @@ type AST' = AST String Operator Mode
 ```
 Ref.:
 1. [Operator](#operator)
-2. [Mode](#mode)
+2. [Mode](#mode)  
 
 
 ## AST Compiled
@@ -89,7 +89,8 @@ type AST
 ```
 Ref.:
 1. [Operator](#operator)
-2. [Mode](#mode)  
+2. [Mode](#mode)   
+
 
 # Lyrics
 ## Line
@@ -101,6 +102,8 @@ data Line
 ```
 Ref.:
 1. [AST](#ast-compiled)
+
+
 ## Song
 ```hs
 data Song = 
@@ -112,4 +115,4 @@ data Song =
 ```  
 
 Ref.:
-1. [Line](#line)
+1. [Line](#line) 
