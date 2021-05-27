@@ -1,5 +1,7 @@
 # Notes
 [notes](./notes.md)
+# Exports
+[exports](./exports.md)
 # Conjunction
 ## Harmonic
 This type of conjunction is used to denote multiple speakers singing at the same time. For instance:  

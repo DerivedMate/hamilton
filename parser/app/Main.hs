@@ -14,11 +14,13 @@ import qualified InputData as ID
 import InputData (RawSong)
 import Helpers
 import Lexer
+import Parser
+import Song
 
 data LexerTest = 
   LexerTest {
     input  :: String,
-    output :: [String]
+    output :: AST'
   }
 
 instance ToJSON LexerTest where
@@ -38,10 +40,7 @@ main = withUtf8 $ do
   inp   <- BL.readFile "../lyrics.json" 
   songs <- pure $ maybeOr (decode inp) [] :: IO [RawSong]
 
-  BL.writeFile "./out.json" 
+  BL.writeFile "../lyrics.processed.json" 
     $ encodePretty 
-    $ map aux 
-    $ nub 
-    $ concatMap (map ID.speaker_line . ID.lines) songs
-
-  where aux s = LexerTest s (show <$> lexer s)
+    $ map songOfRaw songs 
+  
