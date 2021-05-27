@@ -33,11 +33,10 @@ data Lexeme
   | EOI
   deriving (Eq, Show)
 
-data Operator 
-  = Operator { name   :: Connector
-             , weight :: Int
-             }
-  deriving (Show)
+data Operator = Operator 
+  { name   :: Connector
+  , weight :: Int
+  } deriving (Show)
 
 instance Eq Operator where
   (==) a b = weight a == weight b

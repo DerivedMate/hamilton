@@ -1,5 +1,5 @@
-{-# LANGUAGE ViewPatterns #-}
 {-# LANGUAGE OverloadedStrings #-}
+
 
 module Parser where
 import Data.Aeson
@@ -75,10 +75,10 @@ type M    = Mode
 type AST' = AST E O M
 
 appendNode :: AST' -> AST' -> AST'
-appendNode a N0          = a
-appendNode N0 a          = a
-appendNode (N2 m _) a    = N2 m a
-appendNode (N3 op a _) b = N3 op a b
+appendNode a           N0 = a
+appendNode N0          a  = a
+appendNode (N2 m _)    a  = N2 m a
+appendNode (N3 op a _) b  = N3 op a b
 
 (@>) = appendNode
 
@@ -153,12 +153,12 @@ parse (val:r) = aux N0 N0 val r
 
       {----:
         If val is Parenthesis Open:
-          (P, R) = loop
+          (P, R)       = loop
           Tree, State  = { Tree == N0 or [op P is Manner and w(op P) ]
                               then ( prepend (append State to Tree) to P, N0 )
                               else ( Tree, prepend State to P )
                          }
-          rest   = R 
+          rest         = R 
       :----}
       | Parenthesis Open <- val
       , (p, val'' : r'') <- aux N0 N0 val' r'

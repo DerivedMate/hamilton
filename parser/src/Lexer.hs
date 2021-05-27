@@ -78,8 +78,8 @@ lexer s
       , Just l'      <- combineLexemes prev l
       = aux l' r' agr
       | Just (l, r') <- cl
-      = aux l r' (prev:agr)
+      = aux l r' (prev : agr)
       | otherwise
-      = reverse (EOI:prev:agr)
+      = reverse (EOI : prev : agr)
       where 
         cl = lex' r

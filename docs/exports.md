@@ -1,6 +1,9 @@
+# Exports
+All enums compile to Strings, and records - objects, unless stated otherwise.
+
+
 # AST
 ## Mode
-Compiles to strings.
 ```hs
 data Mode 
   = MSpeaker 
@@ -22,10 +25,10 @@ data Connector
 ```
 ## Operator
 ```hs
-data Operator 
-  = Operator { name   :: Connector
-             , weight :: Int
-             }
+data Operator = Operator 
+  { name   :: Connector
+  , weight :: Int
+  }
 ```
 Ref.:
 1. [Connector](#connector)
@@ -95,10 +98,10 @@ Ref.:
 # Lyrics
 ## Line
 ```hs
-data Line
-  = Line { speakers :: AST'
-         , text     :: [String]
-         }
+data Line = Line 
+  { speakers :: AST'
+  , text     :: [String]
+  }
 ```
 Ref.:
 1. [AST](#ast-compiled)
@@ -106,12 +109,12 @@ Ref.:
 
 ## Song
 ```hs
-data Song = 
-  Song { title  :: String
-       , lyrics :: [Line]
-       , origin :: String
-       , i      :: Int
-       }
+data Song = Song 
+  { title  :: String
+  , lyrics :: [Line]
+  , origin :: String
+  , i      :: Int
+  }
 ```  
 
 Ref.:

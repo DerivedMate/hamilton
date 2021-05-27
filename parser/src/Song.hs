@@ -10,20 +10,20 @@ import Parser
 import Lexer
 import qualified InputData as ID
 
-data Line
-  = Line { speakers :: AST'
-         , text     :: [String]
-         } deriving (Eq, Show, Generic)
+data Line = Line 
+  { speakers :: AST'
+  , text     :: [String]
+  } deriving (Eq, Show, Generic)
 
 instance ToJSON Line where
   toEncoding = genericToEncoding defaultOptions
 
-data Song = 
-  Song { title  :: String
-       , lyrics :: [Line]
-       , origin :: String
-       , i      :: Int
-       } deriving (Eq, Show, Generic)
+data Song = Song 
+  { title  :: String
+  , lyrics :: [Line]
+  , origin :: String
+  , i      :: Int
+  } deriving (Eq, Show, Generic)
 
 instance ToJSON Song where
   toEncoding = genericToEncoding defaultOptions
@@ -37,6 +37,10 @@ songOfRaw s =
        }
   where 
     aux l = 
-      Line { speakers = (fst . parse . lexer . ID.speaker_line) l
+      Line { speakers = ( fst 
+                        . parse 
+                        . lexer 
+                        . ID.speaker_line
+                        ) l
            , text     = T.unpack <$> ID.text l
            }
